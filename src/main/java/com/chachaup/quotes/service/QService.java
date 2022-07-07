@@ -49,6 +49,18 @@ public class QService {
         }
     }
 
+    //update operation
+    public Quote update(Quote quote, int id) throws Exception {
+        log.info("requesting to update quote details");
+        Optional<Quote> quoteOptional = qRepo.findById(id);
+        if (quoteOptional.isPresent()){
+            Quote quote1 = quoteOptional.get();
+            quote1.setQuoteMessage(quote.getQuoteMessage());
+            qRepo.save(quote1);
+            return quote1;
+        } else throw new Exception("Quote not found");
+    }
+
     //delete operation
     public void deleteById(int id) throws Exception {
         log.info("requesting to delete quote by supplied id");
