@@ -31,4 +31,10 @@ public class QResource {
         qService.deleteById(id);
 
     }
+
+    @GetMapping("/random")
+    public Quote randomQuote() throws Exception {
+        log.info("Request to return a random quote...");
+        return qService.randomQuote();
+    }
 }

@@ -60,5 +60,21 @@ public class QService {
             throw new Exception("Quote does not exist");
         }
     }
+    public Quote randomQuote() throws Exception {
+        log.info("Populating a quote...");
+        List<Quote> quoteList = qRepo.findAll();
+        if (quoteList.size()>0){
+            return quoteList.get(getRandomNumber(0, quoteList.size()));
+        }
+        else {
+            throw new Exception("There is no quote at this time");
+        }
+
+    }
+
+    //helper methods
+    public int getRandomNumber(int min, int max){
+        return (int) ((Math.random() * (max-min)) + min);
+    }
 
 }
