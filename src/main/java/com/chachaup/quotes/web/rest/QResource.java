@@ -21,9 +21,20 @@ public class QResource {
         return qService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public Quote findById(@PathVariable int id) throws Exception {
+        log.info("request for quote with supplied id");
+        return qService.findById(id);
+    }
+
     @PostMapping("/save")
     public Quote save(@RequestBody Quote quote){
         return qService.add(quote);
+    }
+
+    @PatchMapping("/update/{id}")
+    public Quote updateQuote(@RequestBody Quote quote, @PathVariable int id) throws Exception {
+        return qService.update(quote, id);
     }
 
     @DeleteMapping("/delete/{id}")
